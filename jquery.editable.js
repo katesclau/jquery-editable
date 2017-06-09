@@ -69,6 +69,18 @@
     },
 
     /**
+     * @param {String} newText
+     */
+    escHtml = function(newText) {
+		return newText
+			.replace(/&/g, '&amp;')
+	        .replace(/"/g, '&quot;')
+	        .replace(/'/g, '&#39;')
+	        .replace(/</g, '&lt;')
+	        .replace(/>/g, '&gt;');
+    },
+
+	/**
      * @param {jQuery} $el
      * @param {String} newText
      */
@@ -79,7 +91,7 @@
             $el.html(emptyMessage);
             $el.attr(EMPTY_ATTR, 'empty');
         } else {
-            $el.html( newText );
+            $el.html( escHtml(newText) );
             $el.removeAttr(EMPTY_ATTR);
         }
         $textArea.remove();
