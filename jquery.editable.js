@@ -71,6 +71,18 @@
     /**
      * @param {String} newText
      */
+    unEscHtml = function(newText) {
+		return newText
+	        .replace(/&quot;/g, '"')
+	        .replace(/&#39;/g, "'")
+	        .replace(/&lt;/g, '<')
+	        .replace(/&gt;/g, '>')
+	        .replace(/&amp;/g, '&');
+    },
+
+	/**
+     * @param {String} newText
+     */
     escHtml = function(newText) {
 		return newText
 			.replace(/&/g, '&amp;')
@@ -114,7 +126,7 @@
             $el.html('');
         }
 
-        var defaultText = $.trim( $el.html() ),
+        var defaultText = unEscHtml( $.trim( $el.html() ) ),
             defaultFontSize = $el.css('font-size'),
             elementHeight = $el.height(),
             textareaStyle = 'width: 96%; padding:0; margin:0; border:0; background:none;'+
